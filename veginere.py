@@ -1,9 +1,10 @@
 import string
 ALPHABET = string.ascii_lowercase
+TOSTRIP = "!§$%&/()=?`´+#*,.-_;:'\" "
 
 def input_strip(message):
     input_str = input(message).lower()
-    for i in "!§$%&/()=?`´+#* ":
+    for i in TOSTRIP:
         input_str = input_str.replace(i, "")
     input_str = input_str.replace("ä", "ae")
     input_str = input_str.replace("ö", "oe")
