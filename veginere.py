@@ -2,7 +2,7 @@
 using the veginere method."""
 import string
 ALPHABET = string.ascii_lowercase
-TOSTRIP = "!§$%&/()=?`´+#*,.-_;:'\" "
+TOSTRIP = "!§$%&/()=?`´+#*,.-_;:'\" äüö"
 
 def encrypt(message, key):
     """This method encrypts a given message with
@@ -38,3 +38,6 @@ def decrypt(chiffre, key):
             message_number += len(ALPHABET)
         message = message + ALPHABET[message_number]
     return message
+
+if __name__ == "__main__":
+    print("Please run main.py to execute this file!")
