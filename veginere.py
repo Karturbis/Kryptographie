@@ -53,7 +53,6 @@ def decrypt(chiffre, key):
         message = message + ALPHABET[message_number]
         print(f"LOG character {i+1}: The message number ({message_number}) gets converted to '{ALPHABET[message_number]}'")
         print(f"LOG character {i+1}: The message is now: '{message}'")
-
     return message
 
 if __name__ == "__main__":
