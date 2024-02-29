@@ -18,23 +18,26 @@ def input_strip(message):
     input_str = input_str.replace("ö", "oe")
     input_str = input_str.replace("ü", "ue")
     input_str = input_str.replace("ß", "ss")
+    print("LOG: removed special characters from string.")
     return input_str
 
 if __name__ == "__main__":
     strip_mode = input("Secure or unsecure? [S/u]: ").lower()
-    mode = input_strip(input("Modus e oder d: "))
+    mode = input("Modus e oder d: ")
     if mode == "e":
+        print("Encryption mode is enabled.")
         message = input("Message: ").lower()
         if strip_mode == "u":
             pass
         else:
             message = input_strip(message)
         key = input_strip(input("Passkey: ").lower())
-        print(veginere.encrypt(message, key))
+        print("\nThe chiffre is:\n" + veginere.encrypt(message, key))
 
     elif mode == "d":
+        print("Decryption mode is enabled.")
         chiffre = input("Chiffre: ").lower()
         key = input_strip(input("Passkey: ").lower())
-        print(veginere.decrypt(chiffre, key))
+        print("\nThe message is:\n" + veginere.decrypt(chiffre, key))
     else:
         exit(0)
