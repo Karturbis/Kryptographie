@@ -1,7 +1,7 @@
 """This module encrypts and decrypts messages
 using the veginere method."""
 import string
-ALPHABET = string.ascii_lowercase
+ALPHABET = string.ascii_uppercase
 TOSTRIP = "!§$%&/()=?`´+#*,.-_;:'\" äüö"
 
 def encrypt(message, key):
