@@ -1,7 +1,7 @@
 """This is the main module of the Kryptographie
 project, it is used to handle the requests to the
 different encryption algorythms."""
-import veginere
+import vigenere
 
 TOSTRIP = "!§$%&/()=?`´+#*,.-_;:'\" "
 

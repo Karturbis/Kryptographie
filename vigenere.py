@@ -1,5 +1,5 @@
 """This module encrypts and decrypts messages
-using the veginere method."""
+using the vigenère method."""
 import string
 ALPHABET = string.ascii_uppercase
 TOSTRIP = "!§$%&/()=?`´+#*,.-_;:'\" äüö"
