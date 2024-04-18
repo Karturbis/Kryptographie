@@ -21,7 +21,7 @@ def input_strip(message):
     return input_str
 
 if __name__ == "__main__":
-    strip_mode = input("Secure or unsecure? [S/u]: ").lower()
+    strip_mode = "s"#input("Secure or unsecure? [S/u]: ").lower()
     mode = input("Modus Encryption (e) oder Decryption (d): ").lower()
     if mode == "e":
         print("Encryption mode is enabled.")
@@ -31,12 +31,12 @@ if __name__ == "__main__":
         else:
             message = input_strip(message)
         key = input_strip(input("Passkey: ").upper())
-        print("\nThe chiffre is:\n" + veginere.encrypt(message, key))
+        print("\nThe chiffre is:\n" + vigenere.encrypt(message, key))
 
     elif mode == "d":
         print("Decryption mode is enabled.")
         chiffre = input("Chiffre: ").upper()
         key = input_strip(input("Passkey: ").upper())
-        print("\nThe message is:\n" + veginere.decrypt(chiffre, key))
+        print("\nThe message is:\n" + vigenere.decrypt(chiffre, key))
     else:
         exit(0)
