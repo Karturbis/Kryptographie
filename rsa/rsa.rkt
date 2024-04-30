@@ -11,15 +11,13 @@
 
 
 (define (integer->bitlist a)
-  (reverse
    (string->list
     (number->string a 2)
    )
-  )
 )
 
 (define (mod-exp b e m)
-  (mod-exp-inner 1 b (integer->bitlist e) m 0)
+  (mod-exp-inner 1 b (reverse (integer->bitlist e)) m 0)
 )
 
 (define (mod-exp-inner r x e m i)
