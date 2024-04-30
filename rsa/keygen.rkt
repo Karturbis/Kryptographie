@@ -2,10 +2,10 @@
 (require "primegen.rkt")
 (provide gen-key)
 
-(define p-min (expt 2 1024))
-(define p-max (expt 2 1028))
-(define e-min (expt 2 16))
-(define e-max (expt 2 32))
+(define p-min (expt 2 512))
+(define p-max (expt 2 513))
+(define e-min (expt 2 32))
+(define e-max (expt 2 33))
 
 (define (mult-inv b-const a b s1 s2); calculates the multiplicative inverse with a stripped down version of the extended euclidean algorithm
   (if (= b 0)
@@ -34,18 +34,20 @@
   )
 )
 
-(define (gen-p p-min p-max); function to generate p
-  (define prime (gen-prime p-min p-max))
-  (if (= (gcd e (- prime 1)) 1); avoid phi-N and e to have GCD > 1
-      prime
-      (gen-p)
-  )
-)
-
 (define (gen-q p-min p-max); function top generate q
-  (define qrime (gen-p p-min p-max)); uses gen-p
-  (if (= qrime p); avoid p and q being equal
-      (gen-q)
+  (define qrime (gen-prime p-min p-max)); uses gen-p
+  (define thelogpq
+    (abs
+     (-
+      (log p 2)
+      (log qrime 2)
+     )
+    )
+  )
+  (if (and (< 0.1 thelogpq)
+           (> 30 thelogpq)
+      ); avoid p and q being equal or to close
+      (gen-q p-min p-max)
       qrime
   )
 )
@@ -55,7 +57,7 @@
 (define e 
   (gen-prime e-min e-max)
 )
-(define p (gen-p p-min p-max))
+(define p (gen-prime p-min p-max))
 (define q (gen-q p-min p-max))
 (define N (* p q))
 ; using shortcut to the euclidean phi function
@@ -68,8 +70,8 @@
 (define d (cdr (mult-inv-init e phi-N)))
 
 ; method, that is provided to other parts of the package:
-(define (gen-key modus)
-  (if (equal? modus "private")
+(define (gen-key [private #f])
+  (if private
       (cons d N)
       (cons e N)
   )
