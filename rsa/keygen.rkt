@@ -2,6 +2,7 @@
 (require "primegen.rkt")
 (provide gen-key)
 
+; define max and min values for p,q and e
 (define p-min (expt 2 512))
 (define p-max (expt 2 513))
 (define e-min (expt 2 32))
