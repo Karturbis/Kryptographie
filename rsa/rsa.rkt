@@ -1,12 +1,19 @@
 #lang racket
 (require "keygen.rkt"); import the keys from keygen.txt
+(require "encoding.rkt")
+
+(define e (car (gen-key)))
+(define d (car (gen-key #t)))
+(define N (cdr (gen-key)))
 
 (define (encrypt e N message)
-  (mod-exp message e N)
+  (mod-exp (string-encode message) e N)
 )
 
 (define (decrypt d N chiffre)
-  (mod-exp chiffre d N)
+  (string-decode
+   (mod-exp chiffre d N)
+  )
 )
 
 
